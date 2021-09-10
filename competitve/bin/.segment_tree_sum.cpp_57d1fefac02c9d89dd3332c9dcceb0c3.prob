@@ -1,0 +1,1 @@
+{"name":"Local: segment_tree_sum","url":"/Users/akshitbansal/Desktop/vs/level_high/segment_tree_sum.cpp","tests":[{"id":1628934871685,"input":"5 5\n5 4 2 3 5\n2 0 3\n1 1 1\n2 0 3\n1 3 1\n2 0 5","output":"11\n8\n14"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/akshitbansal/Desktop/vs/level_high/segment_tree_sum.cpp","group":"local","local":true}
