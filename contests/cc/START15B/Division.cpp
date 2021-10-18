@@ -21,21 +21,37 @@ void Graph<T>::dfs(T src){
     for (T x: Graph::adj[src]){dfs(x);}
 }
 #define all(x) x.begin(), x.end()
-#define vb vector<bool>
 #define FOR(i, n) for (int i = 0; i < n; i++)
-#define FORC(i, n, cond) for (int i = 0; i < n && cond; i++)
 #define vin(v, n) for (int i = 0; i < n; i++) cin>>v[i];
-#define umii unordered_map<int, int>
-#define mii map<int, int>
-#define usi unordered_set<int>
-
 
 void solve() {
-    int n;
-    cin>>n;
-    vi v(n);
-    vin(v, n);
-    sort(all(v));
+    int n, a, b, n1;
+    cin>>n>>a>>b;
+    int oddc = 0, evenc = 0; 
+    int ans = 0, l = sqrt(n); 
+    for (int i = 2; i <= l; i++){  
+        while(n % i == 0){ 
+            n /= i; 
+            i % 2 ? oddc++ : evenc++;
+        } 
+    } 
+    if(n > 1){ 
+        n % 2 ? oddc++ : evenc++; 
+    } 
+
+    if(a >= 0 && b >= 0) { 
+        ans = a * evenc + b * oddc;
+    } else if (a >= 0 && b < 0) { 
+        if (evenc) ans = a * evenc; 
+        else if (oddc) ans = b; 
+    } else if (a < 0 && b >= 0) { 
+        ans = b * oddc; 
+        if (evenc) ans += a;
+    } else if (a < 0 && b < 0) { 
+        if (evenc) ans += a; 
+        else if( oddc) ans += b; 
+    } 
+    cout<<ans<<endl; 
 }
 int32_t main() {
     int t;

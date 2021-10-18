@@ -21,21 +21,24 @@ void Graph<T>::dfs(T src){
     for (T x: Graph::adj[src]){dfs(x);}
 }
 #define all(x) x.begin(), x.end()
-#define vb vector<bool>
 #define FOR(i, n) for (int i = 0; i < n; i++)
-#define FORC(i, n, cond) for (int i = 0; i < n && cond; i++)
 #define vin(v, n) for (int i = 0; i < n; i++) cin>>v[i];
-#define umii unordered_map<int, int>
-#define mii map<int, int>
-#define usi unordered_set<int>
-
 
 void solve() {
     int n;
     cin>>n;
-    vi v(n);
-    vin(v, n);
-    sort(all(v));
+    string s;
+    cin>>s;
+    int c = 0;
+    FOR(i, n) {
+        FOR(j, 10) {
+            if (j > 0 && i + j < n) {
+                if (abs(s[i] - s[i + j]) == j) c++;
+            }
+        }
+    }
+    cout<<c<<endl;
+
 }
 int32_t main() {
     int t;

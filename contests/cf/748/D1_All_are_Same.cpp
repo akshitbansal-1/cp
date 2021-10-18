@@ -34,8 +34,14 @@ void solve() {
     int n;
     cin>>n;
     vi v(n);
-    vin(v, n);
+    vin(v,n);
     sort(all(v));
+    int res = 0;
+    for (int i = 1; i < n; i++) {
+        res = __gcd(res, v[i] - v[i - 1]);
+    }
+    if (!res) res = -1;
+    cout<<res<<endl;
 }
 int32_t main() {
     int t;

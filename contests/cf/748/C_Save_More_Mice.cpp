@@ -31,11 +31,25 @@ void Graph<T>::dfs(T src){
 
 
 void solve() {
-    int n;
-    cin>>n;
-    vi v(n);
+    int n, h, sum = 0;
+    cin>>h>>n;
+    vi v(n), diff(n);
     vin(v, n);
+    FOR(i, n) {
+        // cout<<v[i]<<" ";
+        diff[i] = h - v[i];
+        sum += v[i];
+    }
     sort(all(v));
+    // FOR(i, n) cout<<v[i]<<" ";
+    // cout<<endl;
+    int cat = 0, mice = n - 1;
+    while (mice >= 0 && cat < v[mice]) {
+        cat += h - v[mice--];
+    }
+    // if (cat < mice && cat <=)
+    cout<<n - mice - 1<<endl;
+
 }
 int32_t main() {
     int t;

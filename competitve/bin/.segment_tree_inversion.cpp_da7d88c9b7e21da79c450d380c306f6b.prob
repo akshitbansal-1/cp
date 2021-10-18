@@ -1,1 +1,0 @@
-{"name":"Local: segment_tree_inversion","url":"/Users/akshitbansal/Desktop/vs/level_high/segment_tree_inversion.cpp","tests":[{"id":1629133090518,"input":"5\n4 1 3 5 2","output":"0 1 1 0 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/akshitbansal/Desktop/vs/level_high/segment_tree_inversion.cpp","group":"local","local":true}

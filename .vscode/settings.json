@@ -72,5 +72,6 @@
         "system_error": "cpp",
         "typeinfo": "cpp",
         "unordered_map": "cpp"
-    }
+    },
+    "cph.language.java.SubmissionCompiler": "Java 1.8.0_241"
 }

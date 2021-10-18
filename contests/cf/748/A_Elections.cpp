@@ -31,11 +31,16 @@ void Graph<T>::dfs(T src){
 
 
 void solve() {
-    int n;
-    cin>>n;
-    vi v(n);
-    vin(v, n);
-    sort(all(v));
+    int a, b, c;
+    cin>>a>>b>>c;
+    int ar = 0, br = 0, cr = 0;
+    if (a <= b) ar = b - a + 1;
+    if (a <= c) ar = max(ar, c - a + 1);
+    if (b <= c) br = c - b + 1;
+    if (b <= a) br = max(br, a- b + 1);
+    if (c <= b) cr = b - c + 1;
+    if (c <= a) cr = max(cr, a - c + 1);
+    cout<<ar<<" "<<br<<" "<<cr<<endl;
 }
 int32_t main() {
     int t;

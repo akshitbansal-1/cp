@@ -31,11 +31,33 @@ void Graph<T>::dfs(T src){
 
 
 void solve() {
-    int n;
-    cin>>n;
-    vi v(n);
-    vin(v, n);
-    sort(all(v));
+    string s;
+    cin>>s;
+    int i, c = 0;
+    for (i = s.length() - 1; i >= 0; i--) {
+        if (s[i] == '0') break;
+        c++;
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        if (s[i] == '0'){
+            if (s[j] == '5') break;
+            if (s[j] == '0' && j >= 1) break;
+        }
+        c++;
+    }
+    int c1 = c;
+    c = 0;
+    for (i = s.length() - 1; i >= 0; i--) {
+        if (s[i] == '5') break;
+        c++;
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        if (s[i] == '5' && (s[j] == '2' || s[j] == '7')) break;
+        c++;
+    }
+    cout<<min(c, c1)<<endl;
+    
+
 }
 int32_t main() {
     int t;

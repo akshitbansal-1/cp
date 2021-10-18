@@ -1,1 +1,0 @@
-{"name":"Local: b","url":"/Users/akshitbansal/Desktop/vs/b.cpp","tests":[{"id":1629043379684,"input":"5\n7\n?R???BR\n7\n???R???\n1\n?\n1\nB\n10\n?R??RB??B?","output":"BRRBRBR\nBRBRBRB\nB\nB\nBRRBRBBRBR"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/akshitbansal/Desktop/vs/b.cpp","group":"local","local":true}
