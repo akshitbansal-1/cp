@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void dbg_out() { cerr << endl; }
+template<class Fun> class y_combinator_result {Fun fun_;public:template<class T> explicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}template<class ...Args> decltype(auto) operator()(Args &&...args) { return fun_(std::ref(*this), std::forward<Args>(args)...); }};template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
+#ifdef AKSHIT_DEBUG
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+#define int long long int
+
+
+void run_case() {
+    int n;
+    cin>>n;
+    string a, b;
+    cin>>a>>b;
+    vector<int> t0(n), t1(n), t2(n);
+    int c1 = 0, c2 = 0, c3 = 0, ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == '0' && b[i] == '1') {
+            c3++;
+            t2[i] = 1;
+        }
+        else if (a[i] == '1' && b[i] == '0') {
+            c2++;
+            t1[i] = 1;
+        }
+        if (a[i] == '1') {
+            t0[i] = 1;
+            c1++;
+        }
+    }
+    // dbg(c1, c2);
+    for (int i = 1; i < n; i++) {
+        t0[i] += t0[i - 1];
+        t1[i] += t1[i - 1];
+        t2[i] += t2[i - 1];
+    }
+    //     if (a[i] == '1' && b[i] == '1') {
+    //         if (c2 > 0) ans += 2;
+    //         if (c2 > 0) c2--;
+    //         t1[i] = 1;
+    //     }
+    //     if (a[i] == '1' && b[i] == '0') {
+    //         if (c2 > 0)ans += 2;
+    //         if (c2 > 0)c2--;
+    //         t1[i] = 1;
+    //     }
+    // }
+    dbg(c1, c2, c3);
+    dbg(t0);
+    dbg(t1);
+    dbg(t2);
+    if (c2 == 0) {
+        cout<<ans<<endl;
+    } else {
+        cout<<-1<<endl;
+    }
+}
+int32_t main() {
+    ios::sync_with_stdio(false);
+#ifndef AKSHIT_DEBUG
+    cin.tie(nullptr);
+#endif
+ 
+    int tests = 1;
+    cin >> tests;
+ 
+    while (tests--)
+        run_case();
+
+}
