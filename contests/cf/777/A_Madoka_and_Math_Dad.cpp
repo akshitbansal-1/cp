@@ -15,6 +15,33 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> o, t;
+    int req = n / 3, rem = n % 3;
+    if (rem == 2) {
+        int j = 0;
+        while (n > 2) {
+            cout<<21;
+            n -= 3;
+        }
+        cout<<2<<endl;
+        return;
+    } else if (rem == 1) {
+        int j = 0;
+        while (n > 1) {
+            cout<<12;
+            n -= 3;
+        }
+        cout<<1<<endl;
+        return;
+    } else {
+        int j = 0;
+        while (n > 2) {
+            cout<<21;
+            n -= 3;
+        }
+    }
+    cout<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);

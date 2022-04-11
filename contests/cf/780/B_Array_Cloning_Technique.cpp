@@ -15,6 +15,32 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    map<int, int> mp;
+    for (int i = 0; i < n; i++){
+        int a;
+        cin>>a;
+        mp[a]++;
+    }
+    int m = INT_MIN, no;
+    for (auto x: mp) {
+        if (x.second > m) {
+            no = x.first;
+            m = max(m, x.second);
+        }
+    }
+    int ops = 0;
+    int pending = n - mp[no], curr = mp[no];
+    while (pending > 0) {
+        dbg(pending, curr);
+        ops++;
+        ops += min(pending, curr);
+        pending -= min(pending, curr);
+        curr = min(2*curr, n);
+    }
+    dbg();
+    cout<<ops<<endl;
+
 }
 int32_t main() {
     ios::sync_with_stdio(false);

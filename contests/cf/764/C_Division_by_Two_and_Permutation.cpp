@@ -8,13 +8,41 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
 
 void run_case() {
     int n;
+    cin>>n;
+    multiset<int> st;
+    vector<int> v(n), visited(n + 1, 0);
+    for (int i = 0; i < n; i++) {
+        cin>>v[i];
+        st.insert(v[i]);
+    }
+    bool ans = true;
+    for (int i = n; i >= 1; i--) {
+        bool f = false;
+        int t = 0;
+        for (auto x: st) {
+            t = x;
+            while (x) {
+                if (x == i) {
+                    f = true;
+                    break;
+                }
+                x/=2;
+            }
+            if (f) break;
+        }
+        if (!f) {
+            ans = false;
+            break;
+        }
+        st.erase(st.find(t));
+    }
+    if (ans) cout<<"YES\n";
+    else cout<<"NO\n";
 }
 int32_t main() {
     ios::sync_with_stdio(false);

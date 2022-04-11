@@ -8,13 +8,38 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
 
 void run_case() {
     int n;
+    cin>>n;
+    set<int> ste;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            ste.insert(i);
+            ste.insert(n/i);
+        }
+    }
+    vector<int> st(ste.begin(), ste.end());
+    // cout<<st.size()<<endl;
+    bool b = true;
+    for (int i = 0; i < st.size(); i++) {
+        // cout<<st[i]<<" ";
+        for (int j = i + 1; j < st.size(); j++) {
+            for (int k = j + 1; k < st.size(); k++) {
+                if (st[i] * st[j] * st[k] == n) {
+                    b = false;
+                    cout<<"YES\n";
+                    cout<<st[i]<<" "<<st[j]<<" "<<st[k]<<endl;
+                    break;
+                }
+            }
+            if (!b) break;
+        }
+        if (!b) break;
+    }
+    if (b) cout<<"NO\n";
 }
 int32_t main() {
     ios::sync_with_stdio(false);

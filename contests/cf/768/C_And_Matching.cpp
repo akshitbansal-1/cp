@@ -8,13 +8,59 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
+vector<pair<int, int>> vp;
+bool possible = false;
+void check(vector<bool> &v, int sum, int c, int &k) {
+    if (possible) return;
+    if (sum == k && c == v.size() && !possible) {
+        possible = true;
+        for (auto x: vp) {
+            cout<<x.first<<" "<<x.second<<endl;
+        }
+    }
+    for (int i = 0; i < v.size(); i++) {
+        if (v[i]) continue;
+        v[i] = true;
+        for (int j = i + 1; j < v.size(); j++) {
+            if (v[j]) continue;
+            v[j] = true;
+            vp.push_back(make_pair(i, j));
+            check(v, sum + (i & j), c + 2, k);
+            vp.pop_back();
+            v[j] = false;
+        }
+        v[i] = false;
+    }
+}
 
 void run_case() {
-    int n;
+    int n, k;
+    cin>>n>>k;
+    vector<bool> vis(n, 0);
+    if (k == n - 1) {
+        if (n == 4) {
+            cout<<-1<<endl;
+            return;
+        }
+        vis[n - 1] = vis[n - 2] = 1;
+        vis[1] = vis[5] = 1;
+        vis[0] = vis[n - 6] = 1;
+        cout<<0<<" "<<n-6<<endl;
+        cout<<n-1<<" "<<n-2<<endl;
+        cout<<1<<" "<<5<<endl;
+    } else if (k) {
+        vis[k] = vis[n - 1] = 1;
+        vis[0] = vis[n - k - 1] = 1;
+        cout<<k<<" "<<n - 1<<endl;
+        cout<<0<<" "<<n - k - 1<<endl;
+    }
+    for (int i = 0; i < n / 2; i++) {
+        if (!vis[i]) {
+            cout<<i<<" "<<n - 1 - i<<endl;
+        }
+    }
 }
 int32_t main() {
     ios::sync_with_stdio(false);

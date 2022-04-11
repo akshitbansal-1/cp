@@ -12,9 +12,30 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #define isEven(x) (x % 2 == 0)
 #define int long long int
 
-
+bool cmp(pair<int, int>& a,
+         pair<int, int>& b)
+{
+    return a.second < b.second;
+}
 void run_case() {
     int n;
+    cin>>n;
+    set<int> mp;
+    for (int i = 0; i < n; i++) {
+        int a;
+        cin>>a;
+        mp.insert(a);
+    }
+    int z = 0;
+    
+    for (int i = 0; i < mp.size(); i++) {
+        cout<<mp.size()<<" ";
+    }
+    for (int i = mp.size(); i < n; i++) {
+        z++;
+        cout<<mp.size() + z<<" ";
+    }
+    cout<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);

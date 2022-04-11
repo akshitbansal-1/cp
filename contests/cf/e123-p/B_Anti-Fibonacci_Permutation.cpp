@@ -8,20 +8,51 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
-
+vector<int> fib(51);
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n);
+    int z = 0;
+    for (int i = 0; i < n; i++) {
+        z++;
+        if (i == 2) z--;
+        v[i] = z;
+    }
+    v[2] = n;
+    dbg(v);
+    int k = n, t = 0;
+    while (k--) {
+        // dbg(v);
+        t++;
+        next_permutation(v.begin(), v.end());
+        bool b = false;
+        for (int i = 2; i < n; i++) {
+            if (v[i] == v[i - 1] + v[i - 2]) {
+                b = true;
+                break;
+            }
+        }
+        if (b) {
+            k++;
+        } else {
+            for (int x: v) cout<<x<<" ";
+            cout<<endl;
+        }
+    }
+    dbg(t);
 }
 int32_t main() {
     ios::sync_with_stdio(false);
 #ifndef AKSHIT_DEBUG
     cin.tie(nullptr);
 #endif
- 
+    fib[0] = fib[1] = 1;
+    for (int i = 2; i < 51; i++) {
+        fib[i] = fib[i-1] + fib[i-2];
+    }
     int tests = 1;
     cin >> tests;
  

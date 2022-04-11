@@ -15,6 +15,24 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n), v2(n);
+    for (int i = 0 ; i < n; i++) cin>>v[i];
+    for (int i = 0 ; i < n; i++) cin>>v2[i];
+    for (int i = 0; i < n - 1; i++) {
+        if (abs(v[i] - v[i+1]) + abs(v2[i] - v2[i+1]) < abs(v[i] - v2[i+1]) + abs(v2[i] - v[i+1])) {
+            
+        } else {
+            swap(v[i+1], v2[i+1]);
+        }
+    }
+    int sum = 0;
+    dbg(v, v2);
+    for (int i  =0; i < n - 1; i++) {
+        sum += abs(v[i] - v[i+1]) + abs(v2[i] - v2[i+1]);
+    }
+    cout<<sum<<endl;
+
 }
 int32_t main() {
     ios::sync_with_stdio(false);

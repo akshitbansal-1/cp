@@ -8,13 +8,65 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
-
+int check(vector<int> &v) {
+    int op = 0, n = v.size();
+    for (int i = 1; i < n - 1; i++) {
+        if (v[i] > v[i + 1] && v[i] > v[i - 1]) {
+            if (i + 2 < n) {
+                v[i + 1] = max(v[i + 1], v[i + 2]);
+                op++;
+            } else {
+                v[i] = max(v[i + 1], v[i - 1]);
+                op++;
+            }
+        }
+    }
+    return op;
+}
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++) {
+        cin>>v[i];
+    }
+
+    bool isPeak = false;
+    int op = 0;//, n = v.size();
+    for (int i = 1; i < n; i++) {
+        if (i < n - 1 && v[i] > v[i + 1] && v[i] > v[i - 1]) {
+            isPeak = true;
+        }
+        else if (isPeak) {
+            isPeak = false;
+            op++;
+            v[i] = max(v[i < n - 1 ? i + 1 : i], v[i - 1]);
+        }
+    }
+    cout<<op<<endl;
+    // return op;
+    for (int i = 1; i < n - 1; i++) {
+        if (v[i] > v[i + 1] && v[i] > v[i - 1]) {
+            dbg(v, i);
+        }
+    }
+    for (int x: v) cout<<x<<" ";
+    cout<<endl;
+    
+    // vector<int> v1 = v, v2 = v;
+    // reverse(v2.begin(), v2.end());
+    // int x1 = check(v1);
+    // int x2 = check(v2);
+    // dbg(x1, x2);
+    // if (x1 >= x2) {
+    //     cout<<x2<<endl;
+    //     for (int x: v2) cout<<x<<" ";
+    //     cout<<endl;
+    // } else {
+    //     cout<<x1<<endl;
+    // }
 }
 int32_t main() {
     ios::sync_with_stdio(false);

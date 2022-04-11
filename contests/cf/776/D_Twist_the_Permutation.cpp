@@ -12,9 +12,79 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #define isEven(x) (x % 2 == 0)
 #define int long long int
 
+int gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
+ 
+    else
+        return gcd(b, a % b);
+}
+ 
+/*Function to left rotate arr[] of siz n by d*/
+void leftRotate(vector<int> &arr, int d, int n)
+{
+    /* To handle if d >= n */
+    d = d % n;
+    int g_c_d = gcd(d, n);
+    for (int i = 0; i < g_c_d; i++) {
+        /* move i-th values of blocks */
+        int temp = arr[i];
+        int j = i;
+ 
+        while (1) {
+            int k = j + d;
+            if (k >= n)
+                k = k - n;
+ 
+            if (k == i)
+                break;
+ 
+            arr[j] = arr[k];
+            j = k;
+        }
+        arr[j] = temp;
+    }
+    dbg(arr);
+}
 
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n);
+    map<int, int> mp;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin>>x;
+        v[i] = x;
+    }
+    dbg(v);
+    stack<int> st;
+    for (int i = n - 1; i > 0; i--) {
+        vector<int> temp(i + 1);
+        int idx;
+        for (int j = 0; j <= i; j++) {
+            if (v[j] == i + 1) idx = j + 1;
+            temp[j] = v[j];
+        }
+        if (idx == i + 1) {
+            st.push(0);
+            continue;
+        }
+        dbg(idx);
+        leftRotate(temp, idx, i + 1);
+        for (int j = 0; j < i; j++) {
+            v[j] = temp[j];
+        }
+        // idx = idx % (i + 1);
+        st.push(idx);
+    }
+    cout<<0<<" ";
+    while (!st.empty()) {
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    cout<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);

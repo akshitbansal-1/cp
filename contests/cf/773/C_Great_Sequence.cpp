@@ -14,7 +14,23 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    int n, x; 
+    cin >> n >> x;
+    vector<int> nums(n);
+    cin >> nums;    
+
+    multiset<int> st(all(nums)),st1(all(nums));
+
+    for (int i: st){
+        if (st1.find(i) == st1.end()){
+            continue;
+        }
+        int temp = i*x;
+        if (st1.find(temp) != st1.end()){
+            st1.erase(st1.find(temp));
+            st1.erase(st1.find(i));
+        }
+    }
 }
 int32_t main() {
     ios::sync_with_stdio(false);

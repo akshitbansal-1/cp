@@ -15,6 +15,16 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+        cin>>a[i];
+        // pq.push({a[i], i});
+    }
+    sort(all(a));
+    if (a[n] - a[n - 1] > 1) {
+        cout<<"NO\n";
+    } else cout<<"YES\n";
 }
 int32_t main() {
     ios::sync_with_stdio(false);

@@ -14,7 +14,18 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    string s;
+    char ch;
+    cin>>s>>ch;
+    bool can = false;
+    for (int i = 0; i < s.length(); i++) {
+        if (i % 2 == 0 && s[i] == ch) {
+            can  = true;
+            break;
+        }
+    }
+    if (can) cout<<"YES\n";
+    else cout<<"NO\n";
 }
 int32_t main() {
     ios::sync_with_stdio(false);

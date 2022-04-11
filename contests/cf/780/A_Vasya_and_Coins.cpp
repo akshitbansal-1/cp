@@ -14,7 +14,14 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    int a, b;
+    cin>>a>>b;
+    if (a == 0) {
+        cout<<1<<endl;
+        return;
+    }
+    int ans = b * 2 + a + 1;
+    cout<<ans<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);

@@ -14,7 +14,31 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    int l, r, a;
+    cin>>l>>r>>a;
+    if (a == 1) {
+        cout<<r<<endl;
+        return;
+    }
+    if (l == r) {
+        cout<<(l/a + (l%a))<<endl;
+        return;
+    }
+    if (r % a == 0) {
+        int x = r - 1;
+        int n1 = (x / a + (x % a));
+        cout<<n1<<endl;
+    }
+    else {
+        int x = r;
+        int n1 = (x / a + (x % a));
+        int prev = r / a * a - 1;
+        if (prev >= l) {
+            int n2 = (prev) / a + ((prev) % a);
+            cout<<max(n1, n2)<<endl;
+        } else
+            cout<<(x / a + (x % a))<<endl;
+    }
 }
 int32_t main() {
     ios::sync_with_stdio(false);

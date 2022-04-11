@@ -15,6 +15,10 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    // int rem = n - 1;
+    cout<<n-3<<" "<<1<<" "<<1<<" "<<1<<endl;
+
 }
 int32_t main() {
     ios::sync_with_stdio(false);

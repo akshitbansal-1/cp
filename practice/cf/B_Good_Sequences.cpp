@@ -8,13 +8,35 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
 
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n);
+    int N = 1e5 + 1;
+    vector<int> sieve(N, 1);
+    vector<int> ans(N, 1);
+    for (int i = 0; i < n; i++) {
+        cin>>v[i];
+    }
+    for (int i = 2; i <= N; i++) {
+        if (sieve[i] == 1) {
+            for (int j = i * 2; j <= N; j+=i) {
+                sieve[j] = i;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        int k = v[i];
+        while (sieve[k] > 1) {
+            dbg(v[i], k);
+            ans[sieve[k]] += 1;
+            k /= sieve[k];
+        }
+    }
+    cout<<*max_element(ans.begin(), ans.end())<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);
@@ -23,7 +45,9 @@ int32_t main() {
 #endif
  
     int tests = 1;
-    cin >> tests;
+    // cin >> tests;
+    
+    
  
     while (tests--)
         run_case();

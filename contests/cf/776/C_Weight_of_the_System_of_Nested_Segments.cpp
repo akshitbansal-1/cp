@@ -14,7 +14,36 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    // string s;
+    // cin>>s;
+    int n, m;
+    cin>>n>>m;
+    vector<pair<int, int>> v(m);
+    map<int, int> mp;
+    for (int i = 0 ;i < m ;i++) {
+        cin>>v[i].second>>v[i].first;
+        mp[v[i].second] = i;
+    }
+    dbg(v);
+    sort(v.begin(), v.end());
+    dbg(v);
+    int sum = 0;
+    dbg(v.size());
+    for (int i = 0; i < 2 * n; i++) {
+        sum += v[i].first;
+    }
+    cout<<sum<<endl;
+    vector<int> pts;
+    for (int i = 0; i < 2 * n; i++) {
+        pts.push_back(v[i].second);
+    }
+    sort(pts.begin(), pts.end());
+    dbg(pts);
+    for (int i = 0, j = 2 * n - 1; i < j; i++, j--) {
+        cout<<mp[pts[i]] + 1<<" "<<mp[pts[j]] + 1<<endl;
+    }
+    cout<<endl;
+
 }
 int32_t main() {
     ios::sync_with_stdio(false);

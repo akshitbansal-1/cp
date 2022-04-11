@@ -8,13 +8,61 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 #else
 #define dbg(...)
 #endif
-#define all(x) (x).begin(), (x).end()
-#define isEven(x) (x % 2 == 0)
 #define int long long int
 
-
+int binarySearch(vector<int> & arr, int l, int r, int x)
+{
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+  
+        // If the element is present at the middle
+        // itself
+        if (arr[mid] == x)
+            return mid;
+  
+        // If element is smaller than mid, then
+        // it can only be present in left subarray
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+  
+        // Else the element can only be present
+        // in right subarray
+        return binarySearch(arr, mid + 1, r, x);
+    }
+  
+    // We reach here when element is not
+    // present in array
+    return -1;
+}
 void run_case() {
     int n;
+    cin>>n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++) cin>>v[i];
+    // vector<int> v2 = v;
+    // sort(v2.begin(), v2.end());
+    bool cant = false;
+    // dbg(v2);
+    for (int i = n - 2; i >= 0; i--) {
+        if (v[i] > v[i + 1]) {
+            int k = i;
+            for (int j = i + 1; j < n; j++) {
+                dbg(v[k], v[j], (v[j] + v[k]) % 2 == 0);
+                if (v[k] > v[j]) {
+                    if ((v[j] + v[k]) % 2 == 0) { 
+                        cant = true;
+                        break;
+                    }
+                    swap(v[k], v[j]);
+                    k++;
+                }
+            }
+            if (cant) break;
+        }
+    }
+    dbg(v);
+    if (cant) cout<<"No\n";
+    else cout<<"Yes\n";
 }
 int32_t main() {
     ios::sync_with_stdio(false);

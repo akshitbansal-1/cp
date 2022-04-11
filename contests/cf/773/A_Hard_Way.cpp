@@ -14,7 +14,22 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 
 void run_case() {
-    int n;
+    vector<pair<int, int>> v(3);
+    int mi = INT_MAX;
+    for (int i = 0; i < 3; i++) {
+        cin>>v[i].first;
+        cin>>v[i].second;
+        mi = min(mi, v[i].second);
+    }
+    for (int i = 0; i < 3; i++) {
+        for (int j = i + 1; j < 3; j++) {
+            if (v[i].second == v[j].second && v[i].second != mi) {
+                cout<<(max(v[i].first, v[j].first) - min(v[i].first, v[j].first))<<endl;
+                return;
+            };
+        }
+    }
+    cout<<0<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);

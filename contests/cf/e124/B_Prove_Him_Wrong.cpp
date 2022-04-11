@@ -15,6 +15,19 @@ template<class Fun> class y_combinator_result {Fun fun_;public:template<class T>
 
 void run_case() {
     int n;
+    cin>>n;
+    int k = 1, c = 0, im = INT_MAX;
+    if (n <= 19) {
+        cout<<"YES\n";
+        for (int i = 0; i < n; i++) {
+            cout<<k<<" ";
+            k *= 3;
+        }
+        cout<<endl;
+    } else {
+        cout<<"NO\n";
+    }
+    // cout<<c<<endl;
 }
 int32_t main() {
     ios::sync_with_stdio(false);
